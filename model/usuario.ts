@@ -9,7 +9,7 @@ export interface usuarioAttributes {
   email: string;
   pass: string;
   perfil: string;
-  fecha_nacimiento: string;
+  fecha_nacimiento: Date;
   sucursal: number;
 }
 
