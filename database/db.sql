@@ -12,9 +12,9 @@ CREATE TABLE usuario
     email varchar(200) NOT  NULL,
     pass varchar(20) NOT  NULL,
     perfil varchar(20) NOT  NULL,
+    telefono varchar(20)  NULL,
     fecha_nacimiento date NOT  NULL,
     sucursal bigint NOT  NULL,
-
 
     PRIMARY KEY (rut)
 )

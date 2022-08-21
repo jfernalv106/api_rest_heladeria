@@ -11,8 +11,13 @@ export interface usuarioAttributes {
   perfil: string;
   fecha_nacimiento: Date;
   sucursal: number;
+  direccion: string;
+  comuna: string;
+  telefono: string;
+  region: string;
+  nacionalidad: string;
+  horas_semanales: number;
 }
-
 
 
 
@@ -52,6 +57,30 @@ const UsuarioModel =db.define("usuario", {
   },
   sucursal: {
     type: DataTypes.BIGINT,
+    allowNull: false
+  },
+  direccion: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  comuna: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  telefono: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  region: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  nacionalidad: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  horas_semanales: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 },{
