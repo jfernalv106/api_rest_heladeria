@@ -8,6 +8,9 @@ import bodyParser from 'body-parser';
 import path from "path";
 import * as socket from '../socket/sockets';
 import productoRoute from '../routes/producto_route';
+import usuarioRoute from '../routes/usuario_route';
+import asistenciaRoute from '../routes/asistencia_route';
+import sucursalRoute from '../routes/sucursal_route';
 
 
 export default class Server{
@@ -17,7 +20,10 @@ export default class Server{
     public io: socketIO.Server;
     private httpServer: http.Server;
     private apiPatch = {
-        producto: '/api/producto',       
+        producto: '/api/producto', 
+        usuario: '/api/usuario',      
+        asistencia: '/api/asistencia',      
+        sucursal: '/api/sucursal',      
     };
 
     private constructor(){
@@ -67,6 +73,9 @@ export default class Server{
     }
     routes() {
         this.app.use(this.apiPatch.producto, productoRoute);
+        this.app.use(this.apiPatch.usuario, usuarioRoute);
+        this.app.use(this.apiPatch.asistencia,asistenciaRoute );
+        this.app.use(this.apiPatch.sucursal,sucursalRoute );
      
         
          this.app.get("*", (req: Request, res: Response) => {

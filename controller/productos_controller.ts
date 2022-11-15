@@ -4,6 +4,7 @@ import ProductoModel from "../model/producto";
 
 export const getProductos = async (req: Request, res: Response) => {
   let nombre = req.query.nombre;
+  let inventariable = req.query.inventariable;
   let descripcion = req.query.descripcion;
   let precioMin = req.query.precioMin;
   let precioMax = req.query.precioMax;
@@ -24,6 +25,11 @@ export const getProductos = async (req: Request, res: Response) => {
   if (precioMax) {
     parametros = { ...parametros, precio: { [Op.lte]: precioMax } };
   }
+  if (inventariable) {
+    parametros = { ...parametros, inventariable: inventariable };
+  }
+ 
+  
 
   const productos = await ProductoModel.findAll({
     where: parametros,

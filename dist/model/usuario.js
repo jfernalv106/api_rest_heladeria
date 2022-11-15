@@ -42,6 +42,30 @@ const UsuarioModel = database_1.default.define("usuario", {
     sucursal: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false
+    },
+    direccion: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
+    comuna: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
+    telefono: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
+    region: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
+    nacionalidad: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
+    horas_semanales: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     tableName: 'usuario',

@@ -47,26 +47,33 @@ CREATE TABLE producto
     descripcion varchar(200) NOT  NULL,
     precio bigint NOT  NULL,
     stock bigint NOT  NULL,
-    imagen varchar(200) NOT  NULL,
+    imagen varchar(200)   NULL,
     sucursal bigint NOT  NULL,
+    inventariable BOOLEAN NOT  NULL,
+    tipo varchar(80) NOT  NULL,
     volumen DOUBLE PRECISION   NULL,
     peso DOUBLE PRECISION   NULL,
 
     PRIMARY KEY (id)
 )
-CREATE TABLE pedido
+CREATE TABLE producto_complemento(
+    producto bigint NOT  NULL,
+    complemento bigint NOT  NULL,
+    PRIMARY KEY (producto, complemento)
+)
+CREATE TABLE pedido_cliente
 (
     id bigint NOT  NULL,
+    nro_pedido varchar(20) NOT  NULL,
     rut_usuario varchar(20) NOT  NULL,
     fecha_pedido date NOT  NULL,
-    fecha_entrega date NOT  NULL,
     estado varchar(20) NOT  NULL,
     sucursal bigint NOT  NULL,
     total varchar(20) NOT  NULL,
     descripcion varchar(200)   NULL,
     PRIMARY KEY (id)
 )
-CREATE TABLE detalle_pedido
+CREATE TABLE detalle_pedido_cliente
 (
     id bigint NOT  NULL,
     pedido bigint NOT  NULL,
@@ -74,25 +81,26 @@ CREATE TABLE detalle_pedido
     cantidad varchar(20) NOT  NULL,
     PRIMARY KEY (id)
 )
+
 CREATE TABLE venta (
     id bigint NOT  NULL,
+    folio bigint NOT  NULL,
     rut_usuario varchar(20) NOT  NULL,
     fecha_venta date NOT  NULL,
-    fecha_entrega date NOT  NULL,
     estado varchar(20) NOT  NULL,
-    sucursal bigint NOT  NULL,
-    total bigint NOT  NULL,
+    pedido_cliente bigint NOT  NULL,
     descuento bigint   NULL,
-    descripcion varchar(200)   NULL,
+    descripcion varchar(200)  NULL,
     PRIMARY KEY (id)
 )
-CREATE TABLE detalle_venta (
+create table factura (
     id bigint NOT  NULL,
     venta bigint NOT  NULL,
     producto bigint NOT  NULL,
     cantidad varchar(20) NOT  NULL,
     PRIMARY KEY (id)
 )
+
 CREATE TABLE asistencia(
     id bigint NOT  NULL,
     rut_usuario varchar(20) NOT  NULL,

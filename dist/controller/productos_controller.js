@@ -17,6 +17,7 @@ const sequelize_1 = require("sequelize");
 const producto_1 = __importDefault(require("../model/producto"));
 const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let nombre = req.query.nombre;
+    let inventariable = req.query.inventariable;
     let descripcion = req.query.descripcion;
     let precioMin = req.query.precioMin;
     let precioMax = req.query.precioMax;
@@ -32,6 +33,9 @@ const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     if (precioMax) {
         parametros = Object.assign(Object.assign({}, parametros), { precio: { [sequelize_1.Op.lte]: precioMax } });
+    }
+    if (inventariable) {
+        parametros = Object.assign(Object.assign({}, parametros), { inventariable: inventariable });
     }
     const productos = yield producto_1.default.findAll({
         where: parametros,

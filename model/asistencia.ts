@@ -1,11 +1,11 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, literal, Model, Optional } from 'sequelize';
 import db from '../database/database';
 
 export interface AsistenciaAttributes {
-  id: number;
+  id?: number;
   rut_usuario: string;
-  fecha: string;
-  hora: string;
+  fecha: Date;
+  hora: Date;
   sucursal: number;
   tipo: string;
 }
@@ -15,6 +15,7 @@ const AsistenciaModel =db.define("asistencia", {
   id: {
     type: DataTypes.BIGINT,
     allowNull: false,
+    defaultValue: literal("nextval('gredo.seq_asistencia')"),
     primaryKey: true
   },
   rut_usuario: {

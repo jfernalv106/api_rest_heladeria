@@ -9,6 +9,7 @@ const AsistenciaModel = database_1.default.define("asistencia", {
     id: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false,
+        defaultValue: (0, sequelize_1.literal)("nextval('gredo.seq_asistencia')"),
         primaryKey: true
     },
     rut_usuario: {
