@@ -11,6 +11,8 @@ export interface ProductoAttributes {
   sucursal: number;
   volumen?: number;
   peso?: number;
+  inventariable?:string;
+  codigo?:string;
 }
 
 const ProductoModel =db.define("producto", {
@@ -28,6 +30,10 @@ const ProductoModel =db.define("producto", {
     type: DataTypes.STRING(200),
     allowNull: false
   },
+  tipo: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
   precio: {
     type: DataTypes.BIGINT,
     allowNull: false
@@ -37,6 +43,10 @@ const ProductoModel =db.define("producto", {
     allowNull: false
   },
   imagen: {
+    type: DataTypes.STRING(200),
+    allowNull: false
+  },
+  codigo: {
     type: DataTypes.STRING(200),
     allowNull: false
   },
@@ -51,6 +61,11 @@ const ProductoModel =db.define("producto", {
   peso: {
     type: DataTypes.DOUBLE,
     allowNull: true
+  },
+
+  inventariable: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
   }
 },{
   tableName: 'producto',

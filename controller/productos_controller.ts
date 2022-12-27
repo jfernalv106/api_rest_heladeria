@@ -49,6 +49,7 @@ export const postProducto = async (req: Request, res: Response) => {
     await producto.save();
     res.json(producto);
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       ok: false,
       token: "",

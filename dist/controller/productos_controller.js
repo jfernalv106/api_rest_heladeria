@@ -54,6 +54,7 @@ const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.json(producto);
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
             ok: false,
             token: "",

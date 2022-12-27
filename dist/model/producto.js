@@ -20,6 +20,10 @@ const ProductoModel = database_1.default.define("producto", {
         type: sequelize_1.DataTypes.STRING(200),
         allowNull: false
     },
+    tipo: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
     precio: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false
@@ -43,6 +47,10 @@ const ProductoModel = database_1.default.define("producto", {
     peso: {
         type: sequelize_1.DataTypes.DOUBLE,
         allowNull: true
+    },
+    inventariable: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false
     }
 }, {
     tableName: 'producto',
