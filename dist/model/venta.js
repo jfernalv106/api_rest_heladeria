@@ -9,17 +9,24 @@ const VentaModel = database_1.default.define("venta", {
     id: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        defaultValue: (0, sequelize_1.literal)("nextval('gredo.seq_venta')"),
+    },
+    folio: {
+        type: sequelize_1.DataTypes.BIGINT,
+        allowNull: false,
+        defaultValue: (0, sequelize_1.literal)("nextval('gredo.seq_venta')"),
+    },
+    pedido_cliente: {
+        type: sequelize_1.DataTypes.BIGINT,
+        allowNull: false,
+        defaultValue: (0, sequelize_1.literal)("nextval('gredo.seq_venta')"),
     },
     rut_usuario: {
         type: sequelize_1.DataTypes.STRING(20),
         allowNull: false
     },
     fecha_venta: {
-        type: sequelize_1.DataTypes.DATEONLY,
-        allowNull: false
-    },
-    fecha_entrega: {
         type: sequelize_1.DataTypes.DATEONLY,
         allowNull: false
     },

@@ -11,6 +11,7 @@ import productoRoute from '../routes/producto_route';
 import usuarioRoute from '../routes/usuario_route';
 import asistenciaRoute from '../routes/asistencia_route';
 import sucursalRoute from '../routes/sucursal_route';
+import ventaRoute from '../routes/venta_route';
 
 
 export default class Server{
@@ -23,7 +24,8 @@ export default class Server{
         producto: '/api/producto', 
         usuario: '/api/usuario',      
         asistencia: '/api/asistencia',      
-        sucursal: '/api/sucursal',      
+        sucursal: '/api/sucursal',
+        venta:'/api/venta'      
     };
 
     private constructor(){
@@ -76,6 +78,7 @@ export default class Server{
         this.app.use(this.apiPatch.usuario, usuarioRoute);
         this.app.use(this.apiPatch.asistencia,asistenciaRoute );
         this.app.use(this.apiPatch.sucursal,sucursalRoute );
+        this.app.use(this.apiPatch.venta,ventaRoute );
      
         
          this.app.get("*", (req: Request, res: Response) => {

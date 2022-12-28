@@ -92,6 +92,15 @@ CREATE TABLE venta (
     descuento bigint   NULL,
     descripcion varchar(200)  NULL,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE venta_detalle (
+    id bigint NOT  NULL,
+    venta bigint NOT  NULL,
+    producto bigint NOT  NULL,
+    cantidad bigint NOT  NULL,
+    
+    PRIMARY KEY (id)
 )
 create table factura (
     id bigint NOT  NULL,

@@ -1,11 +1,11 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, literal, Model, Optional } from 'sequelize';
 import db from '../database/database';
 
-export interface detalleVentumAttributes {
+export interface VentaDetalleAttributes {
   id: number;
   venta: number;
   producto: number;
-  cantidad: string;
+  cantidad: number;
 }
 
 
@@ -13,7 +13,8 @@ const VentaDetalleModel =db.define("venta_detalle", {
   id: {
     type: DataTypes.BIGINT,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
+    defaultValue: literal("nextval('gredo.seq_detalle_venta')"),
   },
   venta: {
     type: DataTypes.BIGINT,
@@ -24,11 +25,11 @@ const VentaDetalleModel =db.define("venta_detalle", {
     allowNull: false
   },
   cantidad: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.BIGINT,
     allowNull: false
   }
 },{
-  tableName: 'detalle_venta',
+  tableName: 'venta_detalle',
   schema: 'gredo',
   timestamps: false,
 });

@@ -36,6 +36,10 @@ const ProductoModel = database_1.default.define("producto", {
         type: sequelize_1.DataTypes.STRING(200),
         allowNull: false
     },
+    codigo: {
+        type: sequelize_1.DataTypes.STRING(200),
+        allowNull: false
+    },
     sucursal: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false

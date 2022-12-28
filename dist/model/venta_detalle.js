@@ -9,7 +9,8 @@ const VentaDetalleModel = database_1.default.define("venta_detalle", {
     id: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        defaultValue: (0, sequelize_1.literal)("nextval('gredo.seq_detalle_venta')"),
     },
     venta: {
         type: sequelize_1.DataTypes.BIGINT,
@@ -20,11 +21,11 @@ const VentaDetalleModel = database_1.default.define("venta_detalle", {
         allowNull: false
     },
     cantidad: {
-        type: sequelize_1.DataTypes.STRING(20),
+        type: sequelize_1.DataTypes.BIGINT,
         allowNull: false
     }
 }, {
-    tableName: 'detalle_venta',
+    tableName: 'venta_detalle',
     schema: 'gredo',
     timestamps: false,
 });

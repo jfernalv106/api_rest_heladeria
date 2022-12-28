@@ -13,6 +13,7 @@ export interface ProductoAttributes {
   peso?: number;
   inventariable?:string;
   codigo?:string;
+  cantidad?:number;
 }
 
 const ProductoModel =db.define("producto", {

@@ -1,16 +1,18 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, literal, Model, Optional } from 'sequelize';
 import db from '../database/database';
+import { VentaDetalleAttributes } from './venta_detalle';
 
 export interface VentaAttributes {
   id: number;
+  folio:number;
   rut_usuario: string;
   fecha_venta: string;
-  fecha_entrega: string;
   estado: string;
   sucursal: number;
   total: number;
   descuento?: number;
   descripcion?: string;
+  venta_detalle?:VentaDetalleAttributes[];
 }
 
 
@@ -18,7 +20,20 @@ const VentaModel =db.define("venta", {
   id: {
     type: DataTypes.BIGINT,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
+    defaultValue: literal("nextval('gredo.seq_venta')"),
+  },
+  folio: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    defaultValue: literal("nextval('gredo.seq_venta')"),
+    
+  },
+  pedido_cliente: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    defaultValue: literal("nextval('gredo.seq_venta')"),
+    
   },
   rut_usuario: {
     type: DataTypes.STRING(20),
@@ -28,10 +43,7 @@ const VentaModel =db.define("venta", {
     type: DataTypes.DATEONLY,
     allowNull: false
   },
-  fecha_entrega: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
-  },
+
   estado: {
     type: DataTypes.STRING(20),
     allowNull: false
@@ -59,3 +71,5 @@ const VentaModel =db.define("venta", {
 });
 
 export default VentaModel;
+
+

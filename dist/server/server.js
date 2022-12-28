@@ -48,6 +48,7 @@ const producto_route_1 = __importDefault(require("../routes/producto_route"));
 const usuario_route_1 = __importDefault(require("../routes/usuario_route"));
 const asistencia_route_1 = __importDefault(require("../routes/asistencia_route"));
 const sucursal_route_1 = __importDefault(require("../routes/sucursal_route"));
+const venta_route_1 = __importDefault(require("../routes/venta_route"));
 class Server {
     constructor() {
         this.apiPatch = {
@@ -55,6 +56,7 @@ class Server {
             usuario: '/api/usuario',
             asistencia: '/api/asistencia',
             sucursal: '/api/sucursal',
+            venta: '/api/venta'
         };
         this.app = (0, express_1.default)();
         this.app.use(express_1.default.json({ limit: '80mb' }));
@@ -100,6 +102,7 @@ class Server {
         this.app.use(this.apiPatch.usuario, usuario_route_1.default);
         this.app.use(this.apiPatch.asistencia, asistencia_route_1.default);
         this.app.use(this.apiPatch.sucursal, sucursal_route_1.default);
+        this.app.use(this.apiPatch.venta, venta_route_1.default);
         this.app.get("*", (req, res) => {
             res.sendFile(path_1.default.resolve("./public/index.html"));
         });
