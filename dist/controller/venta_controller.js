@@ -24,6 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postVenta = void 0;
+const sequelize_1 = __importDefault(require("sequelize"));
 const venta_1 = __importDefault(require("../model/venta"));
 const venta_detalle_1 = __importDefault(require("../model/venta_detalle"));
 const postVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -31,14 +32,29 @@ const postVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const ventaCaja = body;
     console.log(ventaCaja);
     const { id, venta_detalle } = ventaCaja, resto = __rest(ventaCaja, ["id", "venta_detalle"]);
+    let det = [];
+    const query = "UPDATE gredo.producto AS p SET stock=(p.stock-vd.cantidad) FROM gredo.venta_detalle AS vd WHERE  vd.producto=p.id AND vd.id=:id";
     try {
         const venta = venta_1.default.build(resto);
         yield venta.save();
         venta_detalle === null || venta_detalle === void 0 ? void 0 : venta_detalle.forEach((arc) => __awaiter(void 0, void 0, void 0, function* () {
+            var _a;
             const { id } = arc, resto = __rest(arc, ["id"]);
             resto.venta = venta.getDataValue("id");
             const detalle = yield venta_detalle_1.default.create(resto);
             yield detalle.save();
+            yield det.push(detalle.getDataValue("id"));
+            const parametros = {
+                id: detalle.getDataValue("id"),
+            };
+            console.log(det);
+            yield ((_a = venta_detalle_1.default.sequelize) === null || _a === void 0 ? void 0 : _a.query(query, {
+                replacements: parametros,
+                type: sequelize_1.default.QueryTypes.UPDATE,
+            }));
+        }));
+        det.forEach((detalle) => __awaiter(void 0, void 0, void 0, function* () {
+            console.log(detalle);
         }));
         res.json(venta);
     }
